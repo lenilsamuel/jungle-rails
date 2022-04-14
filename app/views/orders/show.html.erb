@@ -1,3 +1,6 @@
+# <%= debug @order_items.inspect %>
+# <%= debug @order.inspect %>
+
 <section class="orders-show">
 
   <header class="page-header">
@@ -5,7 +8,27 @@
   </header>
 
   <div class="order-summary jumbotron">
-    <h4>Thank you for your order!</h4>
+    <h4>Hi, <%= @order.email %>. Thank you for your order! Here are the details for your <%= pluralize @order_items.size, 'item' %> </h4>
+    <table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th>Description</th>
+    <th>Quantity</th>
+    <th>Price</th>
+  </tr>
+  <% @order_items.each do |order| %>
+    <tr>
+    <td> <%= order[:name] %></td>
+    <td> <%= image_tag order[:product].image.tiny %></td>
+    <td> <%= order[:product].description %></td>
+    <td> <%= order[:quantity] %></td>
+    <td> <%= humanized_money_with_symbol order[:product].price %></td>
+    </tr>
+    <% end %>
+    <td> <%= humanized_money_with_symbol @order.total_cents/100 %></td>
+
+</table>
   </div>
 
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
