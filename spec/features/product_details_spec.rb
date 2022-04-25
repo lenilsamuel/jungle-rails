@@ -21,7 +21,7 @@ RSpec.feature "Visitor navigates to product details page", type: :feature, js: t
     # ACT
     visit root_path
 
-    save_screenshot
+    # save_screenshot
 
 
     first('.product').click_link('Details')
@@ -32,7 +32,7 @@ RSpec.feature "Visitor navigates to product details page", type: :feature, js: t
 
 
     # DEBUG / VERIFY
-    save_screenshot
+    # save_screenshot
 
   end
 
